@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members Only | All Messages</title>
+</head>
+
+<body>
+    <%- include('./partials/header.ejs')%>
+        <main>
+            <h1>All Messages</h1>
+            <% if (messages) { %>
+                <ul>
+                    <% messages.map(message=> { %>
+                        <li>
+                            <span>
+                                <%=message.date %>
+                            </span>
+                            <h3>
+                                <%= message.title %>
+                            </h3>
+                            <p>
+                                <%= message.content %>
+                            </p>
+                            <span>
+                                <%= message.author %>
+                            </span>
+                        </li>
+                        <% }); %>
+                </ul>
+                <% } %>
+                    <a href="/join">Become a Member</a>
+        </main>
+        <%- include('./partials/footer.ejs')%>
+</body>
+
+</html>
