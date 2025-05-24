@@ -11,7 +11,9 @@
     <%- include('./partials/header.ejs')%>
         <main>
             <h1>All Messages</h1>
-            <% if (messages) { %>
+            <a href="/logout">Logout</a>
+            <a href="/new-message">Post Message</a>
+            <% if (locals.messages) { %>
                 <ul>
                     <% messages.map(message=> { %>
                         <li>

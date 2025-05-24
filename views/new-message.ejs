@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Message | Members Only</title>
+</head>
+
+<body>
+    <%- include('./partials/header.ejs')%>
+        <main>
+            <%- include('./partials/form-errors.ejs')%>
+                <form action="/new-message" method="POST">
+                    <label for="title">Subject:</label>
+                    <br>
+                    <input type="text" id="title" name="title" value="<%= locals.formData?.title %>">
+                    <br>
+                    <label for="content">Message:</label>
+                    <br>
+                    <textarea id="content" name="content"><%= locals.formData?.content %></textarea>
+                    <br>
+                    <button type="submit">Post</button>
+                </form>
+        </main>
+        <%- include('./partials/footer.ejs')%>
+</body>
+
+</html>

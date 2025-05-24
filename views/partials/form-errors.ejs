@@ -1,0 +1,18 @@
+<% if (locals.errors) {%>
+    <ul>
+        <% errors.map((error)=> { %>
+            <li>
+                <%= error.msg %>
+            </li>
+            <% }); %>
+    </ul>
+    <% } %>
+        <% if (locals.failureMessage) {%>
+            <ul>
+                <% failureMessage.map((error)=> { %>
+                    <li>
+                        <%= error.msg %>
+                    </li>
+                    <% }); %>
+            </ul>
+            <% } %>

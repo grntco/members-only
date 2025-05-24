@@ -8,25 +8,18 @@
 </head>
 
 <body>
-    <main>
-        <% if (locals.errors) {%>
-            <ul>
-                <% errors.forEach((error)=> { %>
-                    <li>
-                        <%= error.msg %>
-                    </li>
-                    <% }); %>
-            </ul>
-            <% } %>
+    <%- include('./partials/header.ejs')%>
+        <main>
+            <%- include('./partials/form-errors.ejs')%>
                 <form action="/sign-up" method="POST">
                     <label for="firstName">First Name:</label>
-                    <input type="text" id="firstName" name="firstName">
+                    <input type="text" id="firstName" name="firstName" value="<%= locals.formData?.firstName %>">
                     <br>
                     <label for="lastName">Last Name:</label>
-                    <input type="text" id="lastName" name="lastName">
+                    <input type="text" id="lastName" name="lastName" value="<%= locals.formData?.lastName %>">
                     <br>
                     <label for="text">Username:</label>
-                    <input type="text" id="username" name="username">
+                    <input type="text" id="username" name="username" value="<%= locals.formData?.username %>">
                     <br>
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password">
@@ -39,7 +32,8 @@
                     <br>
                     <button type="submit">Create Account</button>
                 </form>
-    </main>
+        </main>
+        <%- include('./partials/footer.ejs')%>
 </body>
 
 </html>

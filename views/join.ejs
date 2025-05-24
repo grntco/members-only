@@ -8,19 +8,22 @@
 </head>
 
 <body>
-    <main>
-        <form action="/join" method="POST">
-            <label for="text">Username:</label>
-            <input type="text" id="username" name="username">
-            <br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password">
-            <br>
-            <label for="secretPassword">Secret Password: </label>
-            <input type="password" id="secretPassword" name="secretPassword">
-            <button type="submit">Join the Club</button>
-        </form>
-    </main>
+    <%- include('./partials/header.ejs')%>
+        <main>
+            <%- include('./partials/form-errrors.ejs')%>
+                <form action="/join" method="POST">
+                    <label for="text">Username:</label>
+                    <input type="text" id="username" name="username">
+                    <br>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password">
+                    <br>
+                    <label for="secretPassword">Secret Password: </label>
+                    <input type="password" id="secretPassword" name="secretPassword">
+                    <button type="submit">Join the Club</button>
+                </form>
+        </main>
+        <%- include('./partials/footer.ejs')%>
 </body>
 
 </html>
