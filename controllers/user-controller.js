@@ -18,7 +18,6 @@ const loginPost = (req, res, next) => {
   })(req, res, next);
 };
 
-// below just in userController?
 const logoutGet = (req, res, next) => {
   req.logout((err) => {
     if (err) {
@@ -28,7 +27,6 @@ const logoutGet = (req, res, next) => {
   });
 };
 
-// TODO: not isAUTH, for general
 const signUpGet = (req, res, next) => {
   res.render("sign-up");
 };
@@ -62,12 +60,10 @@ const signUpPost = [
   },
 ];
 
-// TODO: isAuth
 const joinGet = (req, res, next) => {
   res.render("join");
 };
 
-// TODO: also isAuth ?
 const joinPost = [
   validateSecretPassword,
   async (req, res, next) => {
