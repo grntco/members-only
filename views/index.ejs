@@ -20,11 +20,11 @@
                     <h1>All Messages</h1>
                     <a href="/logout">Logout</a>
                     <a href="/new-message">Post Message</a>
-                    <% if (locals.messages) { %>
+                    <% if (messages) { %>
                         <ul>
                             <% messages.map(message=> { %>
                                 <li>
-                                    <% if (locals.isMember) { %>
+                                    <% if (user.isMember) { %>
                                         <span>
                                             <%= message.date %>
                                         </span>
@@ -35,12 +35,12 @@
                                             <p>
                                                 <%= message.content %>
                                             </p>
-                                            <% if (locals.isMember) { %>
+                                            <% if (user.isMember) { %>
                                                 <span>
                                                     <%= message.author %>
                                                 </span>
                                                 <% } %>
-                                                    <% if (locals.isAdmin) { %>
+                                                    <% if (user.isAdmin) { %>
                                                         <form action="/delete/<%= message.id %>" method="POST">
                                                             <button type="submit">Delete Message</button>
                                                         </form>
@@ -49,7 +49,7 @@
                                 <% }); %>
                         </ul>
                         <% } %>
-                            <% if (!locals.isMember) { %>
+                            <% if (!user.isMember) { %>
                                 <a href="/join">Become a Member</a>
                                 <% } %>
         </main>

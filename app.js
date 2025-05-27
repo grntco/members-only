@@ -8,6 +8,7 @@ const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
 const pool = require("./db/pool");
 const passport = require("./auth/passport");
+const setLocals = require('./middleware/locals')
 
 const sessionStore = new pgSession({
   pool: pool,
@@ -32,6 +33,7 @@ app.use(passport.session());
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+app.use(setLocals);
 app.use("/", router);
 
 app.listen(PORT, () => console.log(`Server running on localhost:${PORT}.`));

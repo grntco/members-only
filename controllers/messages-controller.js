@@ -13,11 +13,13 @@ const allMessagesGet = async (req, res, next) => {
     };
   });
 
-  res.render("index", {
-    messages,
-    isMember: req.user?.isMember,
-    isAdmin: req.user?.isAdmin,
-  });
+  res.locals.messages = messages;
+  res.render("index");
+  // res.render("index", {
+  //   messages,
+  //   // isMember: req.user?.isMember,
+  //   // isAdmin: req.user?.isAdmin,
+  // });
 };
 const newMessageGet = (req, res, next) => {
   res.render("new-message");
