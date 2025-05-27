@@ -1,7 +1,7 @@
 const db = require("../db/queries");
 const validateMessage = require("./validation/validate-message");
 const { validationResult } = require("express-validator");
-const { isAdmin } = require("../auth/auth-utils");
+const isAdmin = require("../middleware/admin");
 const { format } = require("date-fns");
 
 const allMessagesGet = async (req, res, next) => {

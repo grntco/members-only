@@ -1,4 +1,4 @@
-const { isAuth, isAdmin } = require("../auth/auth-utils");
+const isAuth = require("../middleware/auth");
 const userController = require("../controllers/user-controller");
 const messagesController = require("../controllers/messages-controller");
 const { Router } = require("express");
