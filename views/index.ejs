@@ -4,45 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Members Only | All Messages</title>
+    <title>All Messages | Secret Messages</title>
 </head>
 
 <body>
     <%- include('./partials/header.ejs')%>
         <main>
-            <h1>All Messages</h1>
-            <a href="/logout">Logout</a>
-            <a href="/new-message">Post Message</a>
-            <% if (locals.messages) { %>
-                <ul>
-                    <% messages.map(message=> { %>
-                        <li>
-                            <% if (locals.isMember) { %>
-                                <span>
-                                    <%= message.date %>
-                                </span>
-                                <% } %>
-                                    <h3>
-                                        <%= message.title %>
-                                    </h3>
-                                    <p>
-                                        <%= message.content %>
-                                    </p>
+            <% if (locals.joinMsg) { %>
+                <div>
+                    <p>
+                        <%= locals.joinMsg %>
+                    </p>
+                </div>
+                <% } %>
+                    <h1>All Messages</h1>
+                    <a href="/logout">Logout</a>
+                    <a href="/new-message">Post Message</a>
+                    <% if (locals.messages) { %>
+                        <ul>
+                            <% messages.map(message=> { %>
+                                <li>
                                     <% if (locals.isMember) { %>
                                         <span>
-                                            <%= message.author %>
+                                            <%= message.date %>
                                         </span>
                                         <% } %>
-                                            <% if (locals.isAdmin) { %>
-                                                <form action="/delete/<%= message.id %>" method="POST">
-                                                    <button type="submit">Delete Message</button>
-                                                </form>
+                                            <h3>
+                                                <%= message.title %>
+                                            </h3>
+                                            <p>
+                                                <%= message.content %>
+                                            </p>
+                                            <% if (locals.isMember) { %>
+                                                <span>
+                                                    <%= message.author %>
+                                                </span>
                                                 <% } %>
-                        </li>
-                        <% }); %>
-                </ul>
-                <% } %>
-                    <a href="/join">Become a Member</a>
+                                                    <% if (locals.isAdmin) { %>
+                                                        <form action="/delete/<%= message.id %>" method="POST">
+                                                            <button type="submit">Delete Message</button>
+                                                        </form>
+                                                        <% } %>
+                                </li>
+                                <% }); %>
+                        </ul>
+                        <% } %>
+                            <% if (!locals.isMember) { %>
+                                <a href="/join">Become a Member</a>
+                                <% } %>
         </main>
         <%- include('./partials/footer.ejs')%>
 </body>

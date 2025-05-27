@@ -4,22 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Join the Club | Secret Messages</title>
 </head>
 
 <body>
     <%- include('./partials/header.ejs')%>
         <main>
-            <%- include('./partials/form-errrors.ejs')%>
+            <%- include('./partials/form-errors.ejs')%>
                 <form action="/join" method="POST">
-                    <label for="text">Username:</label>
-                    <input type="text" id="username" name="username">
-                    <br>
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password">
-                    <br>
                     <label for="secretPassword">Secret Password: </label>
                     <input type="password" id="secretPassword" name="secretPassword">
+                    <br>
                     <button type="submit">Join the Club</button>
                 </form>
         </main>

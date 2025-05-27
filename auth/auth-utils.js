@@ -1,4 +1,5 @@
 const isAuth = (req, res, next) => {
+  console.log("User protected request initiated");
   if (req.isAuthenticated()) {
     next();
   } else {
@@ -17,16 +18,16 @@ const isAdmin = (req, res, next) => {
   }
 };
 
-const isMember = (req, res, next) => {
-  const member = req.user.member;
+// const isMember = (req, res, next) => {
+//   const member = req.user.member;
 
-  if (req.isAuthenticated() && member) {
-    next();
-  } else {
-    res.status(401).json({
-      msg: "You are not a member. Please join the club",
-    });
-  }
-};
+//   if (req.isAuthenticated() && member) {
+//     next();
+//   } else {
+//     res.status(401).json({
+//       msg: "You are not a member. Please join the club",
+//     });
+//   }
+// };
 
-module.exports = { isAuth, isAdmin, isMember };
+module.exports = { isAuth, isAdmin };

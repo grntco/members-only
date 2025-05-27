@@ -1,34 +1,27 @@
 const db = require("../db/queries");
 const validateMessage = require("./validation/validate-message");
 const { validationResult } = require("express-validator");
-const { isAuth, isAdmin } = require("../auth/auth-utils");
+const { isAdmin } = require("../auth/auth-utils");
 const { format } = require("date-fns");
 
-const allMessagesGet = [
-  isAuth,
-  async (req, res, next) => {
-    const rawMessages = await db.getAllMessages();
-    const messages = rawMessages.map((message) => {
-      return {
-        ...message,
-        date: format(new Date(message.date), "PPp"),
-      };
-    });
+const allMessagesGet = async (req, res, next) => {
+  const rawMessages = await db.getAllMessages();
+  const messages = rawMessages.map((message) => {
+    return {
+      ...message,
+      date: format(new Date(message.date), "PPp"),
+    };
+  });
 
-    res.render("index", {
-      messages,
-      isMember: req.user?.isMember,
-      isAdmin: req.user?.isAdmin,
-    });
-  },
-];
-
-const newMessageGet = [
-  isAuth,
-  (req, res, next) => {
-    res.render("new-message");
-  },
-];
+  res.render("index", {
+    messages,
+    isMember: req.user?.isMember,
+    isAdmin: req.user?.isAdmin,
+  });
+};
+const newMessageGet = (req, res, next) => {
+  res.render("new-message");
+};
 
 const newMessagePost = [
   validateMessage,

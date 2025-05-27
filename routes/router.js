@@ -1,25 +1,16 @@
 const { Router } = require("express");
-const messagesController = require("../controllers/messages-controller");
-const signUpController = require("../controllers/sign-up-controller");
-const loginController = require("../controllers/login-controller");
+const userController = require("../controllers/user-controller");
+const authRouter = require("./auth-router");
 const router = Router();
-// const passport = require("../auth/passport");
 
-router.get("/", messagesController.allMessagesGet);
+// GETS
+router.get("/sign-up", userController.signUpGet);
+router.get("/login", userController.loginGet);
 
-router.get("/sign-up", signUpController.signUpGet);
-router.post("/sign-up", signUpController.signUpPost);
+// POSTS
+router.post("/sign-up", userController.signUpPost);
+router.post("/login", userController.loginPost);
 
-router.get("/new-message", messagesController.newMessageGet);
-router.post("/new-message", messagesController.newMessagePost);
-router.post('/delete/:messageId', messagesController.deleteMessagePost);
-
-router.get("/join", (req, res) => res.render("join"));
-
-router.get("/login", loginController.loginGet);
-// calls the local strategy implemented in passport-config
-router.post("/login", loginController.loginPost);
-
-router.get("/logout", loginController.logoutGet);
+router.use(authRouter);
 
 module.exports = router;

@@ -11,8 +11,6 @@ async function getAllMessages() {
   return rows;
 }
 
-async function getAllMessagesWithDateAndAuthor() {}
-
 async function insertMessage(data) {
   const { userId, title, content } = data;
 
