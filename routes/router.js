@@ -12,6 +12,7 @@ router.post("/sign-up", signUpController.signUpPost);
 
 router.get("/new-message", messagesController.newMessageGet);
 router.post("/new-message", messagesController.newMessagePost);
+router.post('/delete/:messageId', messagesController.deleteMessagePost);
 
 router.get("/join", (req, res) => res.render("join"));
 

@@ -1,14 +1,25 @@
 const db = require("../db/queries");
 const validateMessage = require("./validation/validate-message");
 const { validationResult } = require("express-validator");
-const { isAuth } = require("../auth/auth-utils");
+const { isAuth, isAdmin } = require("../auth/auth-utils");
+const { format } = require("date-fns");
 
 const allMessagesGet = [
   isAuth,
   async (req, res, next) => {
-    console.log(req.user);
-    const messages = await db.getAllMessages();
-    res.render("index", { messages });
+    const rawMessages = await db.getAllMessages();
+    const messages = rawMessages.map((message) => {
+      return {
+        ...message,
+        date: format(new Date(message.date), "PPp"),
+      };
+    });
+
+    res.render("index", {
+      messages,
+      isMember: req.user?.isMember,
+      isAdmin: req.user?.isAdmin,
+    });
   },
 ];
 
@@ -37,7 +48,6 @@ const newMessagePost = [
         title: req.body.title,
         content: req.body.content,
       };
-      console.log(data);
 
       await db.insertMessage(data);
       res.redirect("/");
@@ -48,7 +58,19 @@ const newMessagePost = [
   },
 ];
 
-const deleteMessagePost = (req, res, next) => {};
+const deleteMessagePost = [
+  isAdmin,
+  async (req, res, next) => {
+    try {
+      const messageId = req.params.messageId;
+      await db.deleteMessage(messageId);
+      res.redirect("/");
+    } catch (err) {
+      console.error(err);
+      next(err);
+    }
+  },
+];
 
 module.exports = {
   newMessageGet,

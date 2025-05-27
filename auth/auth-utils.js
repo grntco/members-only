@@ -7,8 +7,7 @@ const isAuth = (req, res, next) => {
 };
 
 const isAdmin = (req, res, next) => {
-  const admin = req.user.admin;
-  //   wtf ^
+  const admin = req.user.isAdmin;
   if (req.isAuthenticated() && admin) {
     next();
   } else {

@@ -2,11 +2,16 @@ const pool = require("./pool");
 
 async function getAllMessages() {
   const { rows } = await pool.query(
-    "SELECT * FROM messages ORDER BY created_date DESC"
+    `SELECT m.id, m.title, m.content, m.created_date AS date, m.user_id AS "userId", u.first_name || ' ' || u.last_name AS author
+    FROM messages AS m
+    JOIN users AS u ON m.user_id = u.id
+    ORDER BY m.created_date DESC`
   );
 
   return rows;
 }
+
+async function getAllMessagesWithDateAndAuthor() {}
 
 async function insertMessage(data) {
   const { userId, title, content } = data;
@@ -22,14 +27,22 @@ async function deleteMessage(id) {
 }
 
 async function getUserById(id) {
-  const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
+  const { rows } = await pool.query(
+    `SELECT id, first_name AS firstName, last_name AS "lastName", username, password, is_member AS "isMember", is_admin AS "isAdmin" 
+    FROM users 
+    WHERE id = $1`,
+    [id]
+  );
   return rows[0];
 }
 
 async function getUserByUsername(username) {
-  const { rows } = await pool.query("SELECT * FROM users WHERE username = $1", [
-    username,
-  ]);
+  const { rows } = await pool.query(
+    `SELECT id, first_name AS "firstName", last_name AS "lastName", username, password, is_member AS "isMember", is_admin AS "isAdmin" 
+    FROM users 
+    WHERE username = $1`,
+    [username]
+  );
   return rows[0];
 }
 

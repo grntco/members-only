@@ -17,18 +17,27 @@
                 <ul>
                     <% messages.map(message=> { %>
                         <li>
-                            <span>
-                                <%=message.date %>
-                            </span>
-                            <h3>
-                                <%= message.title %>
-                            </h3>
-                            <p>
-                                <%= message.content %>
-                            </p>
-                            <span>
-                                <%= message.author %>
-                            </span>
+                            <% if (locals.isMember) { %>
+                                <span>
+                                    <%= message.date %>
+                                </span>
+                                <% } %>
+                                    <h3>
+                                        <%= message.title %>
+                                    </h3>
+                                    <p>
+                                        <%= message.content %>
+                                    </p>
+                                    <% if (locals.isMember) { %>
+                                        <span>
+                                            <%= message.author %>
+                                        </span>
+                                        <% } %>
+                                            <% if (locals.isAdmin) { %>
+                                                <form action="/delete/<%= message.id %>" method="POST">
+                                                    <button type="submit">Delete Message</button>
+                                                </form>
+                                                <% } %>
                         </li>
                         <% }); %>
                 </ul>
