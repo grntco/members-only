@@ -1,0 +1,29 @@
+<div class="sidebar">
+    <h2 class="user-greeting">Hi, <%= user.firstName + ' ' + user.lastName %></h2>
+    <div class="privileges-list-container">
+        <h4>Your Privileges</h4>
+        <ul class="privileges-list">
+            <% if (user.isAdmin) { %>
+            <li class="privileges-list-item"><strong>Admin: </strong>Ability to delete messages.</li>
+            <% } %>
+            <% if (user.isMember) { %>
+            <li class="privileges-list-item"><strong>Member: </strong>Permission to view message times and authors.</li>
+            <% } %>
+            <li class="privileges-list-item"><strong>User: </strong>Ability to send messages.</li> 
+        </ul>
+    </div>
+    <ul class="sidebar-link-list">
+        <li class="sidebar-link-list-item">
+            <a href="/new-message" class="sidebar-link blue">New Message</a>
+        </li>
+        <div class="spacer"></div>
+        <% if (!user.isMember) { %>
+        <li class="sidebar-link-list-item">
+            <a href="/join" class="sidebar-link">Join the Club</a>
+        </li>
+        <% } %>
+        <li class="sidebar-link-list-item">
+            <a href="/logout" class="sidebar-link">Logout</a>
+        </li>
+    </ul>
+</div>

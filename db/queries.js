@@ -26,7 +26,7 @@ async function deleteMessage(id) {
 
 async function getUserById(id) {
   const { rows } = await pool.query(
-    `SELECT id, first_name AS firstName, last_name AS "lastName", username, password, is_member AS "isMember", is_admin AS "isAdmin" 
+    `SELECT id, first_name AS "firstName", last_name AS "lastName", username, password, is_member AS "isMember", is_admin AS "isAdmin" 
     FROM users 
     WHERE id = $1`,
     [id]

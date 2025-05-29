@@ -4,54 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
     <title>All Messages | Secret Messages</title>
 </head>
 
 <body>
     <%- include('./partials/header.ejs')%>
         <main>
-            <% if (locals.joinMsg) { %>
-                <div>
-                    <p>
-                        <%= locals.joinMsg %>
-                    </p>
-                </div>
-                <% } %>
-                    <h1>All Messages</h1>
-                    <a href="/logout">Logout</a>
-                    <a href="/new-message">Post Message</a>
-                    <% if (messages) { %>
-                        <ul>
-                            <% messages.map(message=> { %>
-                                <li>
-                                    <% if (user.isMember) { %>
-                                        <span>
-                                            <%= message.date %>
-                                        </span>
-                                        <% } %>
-                                            <h3>
-                                                <%= message.title %>
-                                            </h3>
-                                            <p>
-                                                <%= message.content %>
-                                            </p>
-                                            <% if (user.isMember) { %>
-                                                <span>
+            <%- include('./partials/sidebar.ejs') %>
+                <div class="content">
+                    <% if (locals.joinMsg) { %>
+                        <div>
+                            <p>
+                                <%= locals.joinMsg %>
+                            </p>
+                        </div>
+                        <% } %>
+                            <h1>All Messages</h1>
+                            <% if (messages) { %>
+                                <ul class="messages-list">
+                                    <% messages.map(message=> { %>
+                                        <li class="message-item">
+                                            <div class="message">
+                                                <% if (user.isMember) { %>
+                                                <span class="message-author">
                                                     <%= message.author %>
                                                 </span>
+                                                <% } else { %>
+                                                <span class="message-author blurred">
+                                                    Secret Identity
+                                                </span>
                                                 <% } %>
-                                                    <% if (user.isAdmin) { %>
-                                                        <form action="/delete/<%= message.id %>" method="POST">
-                                                            <button type="submit">Delete Message</button>
-                                                        </form>
-                                                        <% } %>
-                                </li>
-                                <% }); %>
-                        </ul>
-                        <% } %>
-                            <% if (!user.isMember) { %>
-                                <a href="/join">Become a Member</a>
-                                <% } %>
+                                                <h3 class="message-title">
+                                                    <%= message.title %>
+                                                </h3>
+                                                <p class="message-content">
+                                                    <%= message.content %>
+                                                </p>
+                                                <% if (user.isMember) { %>
+                                                <span class="message-date">
+                                                    <%= message.date %>
+                                                </span>
+                                                <% } else { %>
+                                                <span class="message-date blurred">
+                                                    Not A, Real Date 00:00 AM
+                                                </span>
+                                                <% } %>
+                                            </div>
+                                            <% if (user.isAdmin) { %>
+                                            <form action="/delete/<%= message.id %>" method="POST">
+                                                <button type="submit">Delete Message</button>
+                                            </form>
+                                            <% } %>
+                                        </li>
+                                    <% }); %>
+                                </ul>
+                                <% }; %>
+                </div>
         </main>
         <%- include('./partials/footer.ejs')%>
 </body>
