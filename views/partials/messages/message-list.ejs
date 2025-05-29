@@ -1,0 +1,7 @@
+<% if (messages) { %>
+    <ul class="messages-list">
+        <% messages.map(message=> { %>
+            <%- include('./message.ejs', { message }) %>
+        <% }); %>
+    </ul>
+<% }; %>

@@ -4,24 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
     <title>Login | Secret Messages</title>
 </head>
 
 <body>
     <%- include('./partials/header.ejs')%>
         <main>
-            <%- include('./partials/form-errors.ejs')%>
-                <form action="/login" method="POST">
+            <div class="form-container">
+                <%- include('./partials/form-errors.ejs')%>
+                <form action="/login" method="POST" class="login-form account-form">
+                    <h1 class="form-title">Login</h1>
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username">
-                    <br>
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password">
-                    <br>
-                    <button type="submit">Login</button>
+                    <button type="submit" class="btn blue">Login</button>
+                    <p class="form-other">Don't have an account? <a href="/sign-up">Create one</a>.</p>
                 </form>
-                <p>Don't have an account? <a href="/sign-up">Create one</a>.</p>
-
+            </div>
         </main>
         <%- include('./partials/footer.ejs')%>
 </body>

@@ -4,19 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
     <title>Join the Club | Secret Messages</title>
 </head>
 
 <body>
     <%- include('./partials/header.ejs')%>
         <main>
-            <%- include('./partials/form-errors.ejs')%>
-                <form action="/join" method="POST">
-                    <label for="secretPassword">Secret Password: </label>
-                    <input type="password" id="secretPassword" name="secretPassword">
-                    <br>
-                    <button type="submit">Join the Club</button>
-                </form>
+            <%- include('./partials/sidebar.ejs') %>
+            <div class="content">
+                <div class="form-container">
+                    <%- include('./partials/form-errors.ejs')%>
+                    <form action="/join" method="POST" class="account-form">
+                        <span class="form-user-greeting">Hey <%= user.firstName + ' ' + user.lastName  %>,</span>
+                        <h1 class="form-title">Join the Club!</h1>
+                        <p class="form-other">Enter the secret password (hint: it's "secretpassword"), become a member,
+                            and view message times and authors!</p>
+                        <label for="secretPassword">Secret Password: </label>
+                        <input type="password" id="secretPassword" name="secretPassword">
+                        <br>
+                        <button type="submit" class="btn blue">Join the Club</button>
+                    </form>
+                </div>
+            </div>
         </main>
         <%- include('./partials/footer.ejs')%>
 </body>

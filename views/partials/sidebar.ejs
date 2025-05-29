@@ -1,5 +1,8 @@
 <div class="sidebar">
-    <h2 class="user-greeting">Hi, <%= user.firstName + ' ' + user.lastName %></h2>
+    <div class="user-info">
+        <span>Logged in as:</span>
+        <span class="user"><%= user.firstName + ' ' + user.lastName %></span>
+    </div>
     <div class="privileges-list-container">
         <h4>Your Privileges</h4>
         <ul class="privileges-list">

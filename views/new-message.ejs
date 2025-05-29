@@ -4,24 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
     <title>New Message | Secret Messages</title>
 </head>
 
 <body>
     <%- include('./partials/header.ejs')%>
         <main>
-            <%- include('./partials/form-errors.ejs')%>
-                <form action="/new-message" method="POST">
-                    <label for="title">Subject:</label>
-                    <br>
-                    <input type="text" id="title" name="title" value="<%= locals.formData?.title %>">
-                    <br>
-                    <label for="content">Message:</label>
-                    <br>
-                    <textarea id="content" name="content"><%= locals.formData?.content %></textarea>
-                    <br>
-                    <button type="submit">Post</button>
-                </form>
+            <%- include('./partials/sidebar.ejs') %>
+            <div class="content">
+                <div class="form-container">
+                    <%- include('./partials/form-errors.ejs')%>
+                    <h1>Compose Message</h1>
+                    <form action="/new-message" method="POST" class="new-message-form">
+                        <label for="title">Subject:</label>
+                        <br>
+                        <input type="text" id="title" name="title" value="<%= locals.formData?.title %>">
+                        <br>
+                        <label for="content">Message:</label>
+                        <br>
+                        <textarea id="content" name="content" rows="8"><%= locals.formData?.content %></textarea>
+                        <br>
+                        <button type="submit" class="btn blue">Post</button>
+                    </form>
+                </div>
+            </div>
         </main>
         <%- include('./partials/footer.ejs')%>
 </body>

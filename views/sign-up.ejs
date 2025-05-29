@@ -4,14 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
     <title>Sign Up | Secret Messages</title>
 </head>
 
 <body>
     <%- include('./partials/header.ejs')%>
         <main>
+            <div class="form-container">
             <%- include('./partials/form-errors.ejs')%>
-                <form action="/sign-up" method="POST">
+                <form action="/sign-up" method="POST" class="sign-up-form account-form">
+                    <h1 class="form-title">Create Account</h1>
                     <label for="firstName">First Name:</label>
                     <input type="text" id="firstName" name="firstName" value="<%= locals.formData?.firstName %>">
                     <br>
@@ -30,8 +33,11 @@
                     <label for="admin">Wanna be an admin? (no pressure)</label>
                     <input type="checkbox" id="admin" name="admin">
                     <br>
-                    <button type="submit">Create Account</button>
+                    <button type="submit" class="btn blue">Create Account</button>
+                    <br>
+                    <p class="form-other">Already have an account? <a href="/login">Login</a>.</p>
                 </form>
+                </div>
         </main>
         <%- include('./partials/footer.ejs')%>
 </body>
