@@ -7,15 +7,18 @@
         <h4>Your Privileges</h4>
         <ul class="privileges-list">
             <% if (user.isAdmin) { %>
-            <li class="privileges-list-item"><strong>Admin: </strong>Ability to delete messages.</li>
+            <li class="privileges-list-item"><strong>Admin: </strong>Can delete messages.</li>
             <% } %>
             <% if (user.isMember) { %>
-            <li class="privileges-list-item"><strong>Member: </strong>Permission to view message times and authors.</li>
+            <li class="privileges-list-item"><strong>Member: </strong>Can view message times and authors.</li>
             <% } %>
-            <li class="privileges-list-item"><strong>User: </strong>Ability to send messages.</li> 
+            <li class="privileges-list-item"><strong>User: </strong>Can send messages.</li> 
         </ul>
     </div>
     <ul class="sidebar-link-list">
+        <li class="sidebar-link-list-item">
+            <a href="/" class="sidebar-link">Home</a>
+        </li>
         <li class="sidebar-link-list-item">
             <a href="/new-message" class="sidebar-link blue">New Message</a>
         </li>

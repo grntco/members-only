@@ -1,14 +1,5 @@
 <li class="message-item">
     <div class="message">
-        <% if (user.isMember) { %>
-        <span class="message-author">
-            <%= message.author %>
-        </span>
-        <% } else { %>
-        <span class="message-author blurred">
-            Secret Identity
-        </span>
-        <% } %>
         <h3 class="message-title">
             <%= message.title %>
         </h3>
@@ -16,12 +7,12 @@
             <%= message.content %>
         </p>
         <% if (user.isMember) { %>
-        <span class="message-date">
-            <%= message.date %>
+        <span class="message-info">
+            From: <%= message.author %> on <%= message.date %>
         </span>
         <% } else { %>
-        <span class="message-date blurred">
-            Not A, Real Date 00:00 AM
+        <span class="message-info blurred">
+            From: Secret Identity on Not A, Real Date 00:00 AM
         </span>
         <% } %>
     </div>

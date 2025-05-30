@@ -15,16 +15,12 @@
             <div class="content">
                 <div class="form-container">
                     <%- include('./partials/form-errors.ejs')%>
-                    <h1>Compose Message</h1>
                     <form action="/new-message" method="POST" class="new-message-form">
+                        <h1 class="form-title">Compose Message</h1>
                         <label for="title">Subject:</label>
-                        <br>
                         <input type="text" id="title" name="title" value="<%= locals.formData?.title %>">
-                        <br>
                         <label for="content">Message:</label>
-                        <br>
                         <textarea id="content" name="content" rows="8"><%= locals.formData?.content %></textarea>
-                        <br>
                         <button type="submit" class="btn blue">Post</button>
                     </form>
                 </div>

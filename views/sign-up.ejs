@@ -17,24 +17,19 @@
                     <h1 class="form-title">Create Account</h1>
                     <label for="firstName">First Name:</label>
                     <input type="text" id="firstName" name="firstName" value="<%= locals.formData?.firstName %>">
-                    <br>
                     <label for="lastName">Last Name:</label>
                     <input type="text" id="lastName" name="lastName" value="<%= locals.formData?.lastName %>">
-                    <br>
                     <label for="text">Username:</label>
                     <input type="text" id="username" name="username" value="<%= locals.formData?.username %>">
-                    <br>
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password">
-                    <br>
                     <label for="confirmPassword">Confirm Password:</label>
                     <input type="password" id="confirmPassword" name="confirmPassword">
-                    <br>
-                    <label for="admin">Wanna be an admin? (no pressure)</label>
-                    <input type="checkbox" id="admin" name="admin">
-                    <br>
+                    <div class="checkbox-input">
+                        <label for="admin">Wanna be an admin? (no pressure)</label>
+                        <input type="checkbox" id="admin" name="admin">
+                    </div>
                     <button type="submit" class="btn blue">Create Account</button>
-                    <br>
                     <p class="form-other">Already have an account? <a href="/login">Login</a>.</p>
                 </form>
                 </div>

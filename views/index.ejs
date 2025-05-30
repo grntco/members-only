@@ -10,28 +10,28 @@
 
 <body>
     <%- include('./partials/header.ejs')%>
-        <main>
-            <%- include('./partials/sidebar.ejs') %>
-            <div class="content">
-                <% if (locals.joinMsg) { %>
-                    <div>
-                        <p>
-                            <%= locals.joinMsg %>
-                        </p>
-                    </div>
-                <% } %>
+    <main>
+        <%- include('./partials/sidebar.ejs') %>
+        <div class="content">
+            <% if (locals.joinMsg) { %>
+                <div>
+                    <p>
+                        <%= locals.joinMsg %>
+                    </p>
+                </div>
+            <% } %>
+            <div class="container">
                 <% if (!user.isMember) { %>
                     <div class="alert blue">
                         <p>Want to see message times and authors? <a href="/join">Become a member</a>!</p>
                     </div>
                 <% } %>
-                <div class="messages-list-container">
-                    <h2>All Messages</h2>
-                    <%- include('./partials/messages/message-list.ejs')  %>
-                </div>
+                <h1 class="messages-list-title">All Messages</h1>
+                <%- include('./partials/messages/message-list.ejs')  %>
             </div>
-        </main>
-        <%- include('./partials/footer.ejs')%>
+        </div>
+    </main>
+    <%- include('./partials/footer.ejs')%>
 </body>
 
 </html>
