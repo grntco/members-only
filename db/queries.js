@@ -61,14 +61,6 @@ async function updateUserMember(id, data) {
   ]);
 }
 
-async function updateUserAdmin(id, data) {
-  const { isAdmin } = data;
-  await pool.query("UPDATE users SET is_admin = $2 WHERE id = $1", [
-    id,
-    isAdmin,
-  ]);
-}
-
 module.exports = {
   getAllMessages,
   insertMessage,
@@ -77,5 +69,4 @@ module.exports = {
   getUserByUsername,
   insertUser,
   updateUserMember,
-  updateUserAdmin,
 };
