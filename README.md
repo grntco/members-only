@@ -12,6 +12,7 @@ I learned to handle authentication requests using the Passport.js local strategy
 - As a general user, you can post new messages view all user messages but are unable to see message times and authors. 
 - Join the club to become a member of Members Only and gain access to see message times and authors.
 - If you create an account as an admin, you'll gain the ability to delete user messages.
+- Log out and try to view certain routes (/, /join), and you will get redirected to the login page.
 
 ## Tools
 
