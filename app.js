@@ -10,6 +10,7 @@ const pool = require("./db/pool");
 const passport = require("./auth/passport");
 const assetsPath = path.join(__dirname, "public");
 const setLocals = require("./middleware/locals");
+const flash = require('connect-flash');
 
 const sessionStore = new pgSession({
   pool: pool,
@@ -25,6 +26,7 @@ app.use(
     cookie: { maxAge: 1000 * 60 * 60 * 24 }, // Equals 1 day
   })
 );
+app.use(flash());
 
 app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));

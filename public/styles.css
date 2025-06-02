@@ -258,6 +258,12 @@ main {
   color: var(--secondary-bg-color);
 }
 
+.alert.green {
+  border-color: rgb(92, 183, 92);
+  background-color: rgb(92, 183, 92);
+  color: var(--primary-bg-color);
+}
+
 .container {
   margin: 0 auto;
   max-width: 800px;
@@ -445,4 +451,29 @@ form.account-form button[type="submit"] {
 
 .new-message-form textarea:focus {
   border: 2px solid var(--blue);
+}
+
+/* .form-errors-list {
+  padding: 1rem;
+} */
+
+.form-errors-container {
+  min-width: 600px;
+  margin: 1rem 0rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  font-size: 1.2rem;
+  color: rgb(215, 60, 60);
+  background-color: rgba(215, 60, 60, 0.1);
+  border: 1px solid rgb(215, 60, 60);
+  border-radius: 1rem;
+}
+
+.form-errors-list {
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }

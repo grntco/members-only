@@ -15,14 +15,10 @@ const allMessagesGet = async (req, res, next) => {
 
   res.locals.messages = messages;
   res.render("index");
-  // res.render("index", {
-  //   messages,
-  //   // isMember: req.user?.isMember,
-  //   // isAdmin: req.user?.isAdmin,
-  // });
 };
+
 const newMessageGet = (req, res, next) => {
-  res.render("new-message");
+  res.render("new-message", { errors: [] });
 };
 
 const newMessagePost = [

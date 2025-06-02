@@ -6,6 +6,7 @@ module.exports = [
     .trim()
     .notEmpty()
     .withMessage("Please enter a secret password.")
+    .bail()
     .custom((value) => {
       if (value !== process.env.MEMBER_SECRET_PASSWORD) {
         throw new Error("Oh no! That's not the secret password.");

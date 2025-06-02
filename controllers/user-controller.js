@@ -1,22 +1,36 @@
 require("dotenv").config();
 const bcrypt = require("bcryptjs");
 const db = require("../db/queries");
-const validateUser = require("./validation/validate-user");
+const validateSignUp = require("./validation/validate-sign-up");
 const validateSecretPassword = require("./validation/validate-secret-password");
+const validateLogin = require("./validation/validate-login");
 const { validationResult } = require("express-validator");
 const passport = require("../auth/passport");
 
 const loginGet = (req, res, next) => {
-  res.render("login");
+  const flashErrors = req.flash("error");
+  const errors = flashErrors.map((error) => ({ msg: error }));
+  res.render("login", { errors });
 };
 
-const loginPost = (req, res, next) => {
-  passport.authenticate("local", {
-    failureRedirect: "/login",
-    successRedirect: "/",
-    failureMessage: "The username or password entered are incorrect.",
-  })(req, res, next);
-};
+const loginPost = [
+  validateLogin,
+  (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).render("login", {
+        errors: errors.array(),
+      });
+    }
+
+    passport.authenticate("local", {
+      failureRedirect: "/login",
+      successRedirect: "/",
+      failureFlash: true,
+    })(req, res, next);
+  },
+];
 
 const logoutGet = (req, res, next) => {
   req.logout((err) => {
@@ -28,11 +42,11 @@ const logoutGet = (req, res, next) => {
 };
 
 const signUpGet = (req, res, next) => {
-  res.render("sign-up");
+  res.render("sign-up", { errors: [], formData: {} });
 };
 
 const signUpPost = [
-  validateUser,
+  validateSignUp,
   async (req, res, next) => {
     const errors = validationResult(req);
 
@@ -61,13 +75,12 @@ const signUpPost = [
 ];
 
 const joinGet = (req, res, next) => {
-  res.render("join");
+  res.render("join", { errors: [] });
 };
 
 const joinPost = [
   validateSecretPassword,
   async (req, res, next) => {
-    console.log("called function");
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -79,8 +92,13 @@ const joinPost = [
     try {
       const userId = req.user.id;
       await db.updateUserMember(userId, { isMember: true });
+      req.flash(
+        "success",
+        `Welcome to the club, ${
+          req.user.firstName + " " + req.user.lastName
+        }! You can now view message times and authors.`
+      );
       res.redirect("/");
-      // TODO: look up using flash to pass data
     } catch (err) {
       console.error(err);
       next(err);

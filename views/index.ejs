@@ -13,14 +13,14 @@
     <main>
         <%- include('./partials/sidebar.ejs') %>
         <div class="content">
-            <% if (locals.joinMsg) { %>
-                <div>
-                    <p>
-                        <%= locals.joinMsg %>
-                    </p>
-                </div>
-            <% } %>
             <div class="container">
+                <% if (successMsg) { %>
+                    <div class="alert green">
+                        <p>
+                            <%= successMsg %>
+                        </p>
+                    </div>
+                <% } %>
                 <% if (!user.isMember) { %>
                     <div class="alert blue">
                         <p>Want to see message times and authors? <a href="/join">Become a member</a>!</p>
