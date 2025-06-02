@@ -9,7 +9,7 @@ const passport = require("../auth/passport");
 
 const loginGet = (req, res, next) => {
   const flashErrors = req.flash("error");
-  const errors = flashErrors.map((error) => ({ msg: error }));
+  const errors = flashErrors.map((error) => ({ msg: error })); // converts flash errors to be like express-validator errors
   res.render("login", { errors });
 };
 

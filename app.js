@@ -29,7 +29,6 @@ app.use(
 app.use(flash());
 
 app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: false }));
 app.use(passport.session());
 

@@ -7,7 +7,7 @@ module.exports = [
     .withMessage("Please enter a subject for your message.")
     .bail()
     .isLength({ min: 1, max: 30 })
-    .withMessage("Your title must be 30 characters or less. "),
+    .withMessage("Your subject must be 30 characters or less. "),
   body("content")
     .trim()
     .notEmpty()
