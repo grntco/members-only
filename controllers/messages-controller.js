@@ -41,6 +41,7 @@ const newMessagePost = [
       };
 
       await db.insertMessage(data);
+      req.flash("success", "Congrats! You successfully posted a message.");
       res.redirect("/");
     } catch (err) {
       console.error(err);
@@ -55,6 +56,7 @@ const deleteMessagePost = [
     try {
       const messageId = req.params.messageId;
       await db.deleteMessage(messageId);
+      req.flash("success", "You successfully deleted a message.");
       res.redirect("/");
     } catch (err) {
       console.error(err);

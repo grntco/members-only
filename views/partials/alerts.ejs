@@ -1,0 +1,12 @@
+<% if (successMsg) { %>
+    <div class="alert green">
+        <p>
+            <%= successMsg %>
+        </p>
+    </div>
+<% } %>
+<% if (currentPath === '/' && (!user?.isMember)) { %>
+    <div class="alert blue">
+        <p>Want to see message times and authors? <a href="/join">Become a member</a>!</p>
+    </div>
+<% } %>

@@ -12,6 +12,7 @@
     <%- include('./partials/header.ejs')%>
         <main>
             <div class="form-container">
+                <%- include('./partials/alerts.ejs') %>
                 <%- include('./partials/form-errors.ejs')%>
                 <form action="/login" method="POST" class="login-form account-form">
                     <h1 class="form-title">Login</h1>

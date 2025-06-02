@@ -14,18 +14,7 @@
         <%- include('./partials/sidebar.ejs') %>
         <div class="content">
             <div class="container">
-                <% if (successMsg) { %>
-                    <div class="alert green">
-                        <p>
-                            <%= successMsg %>
-                        </p>
-                    </div>
-                <% } %>
-                <% if (!user.isMember) { %>
-                    <div class="alert blue">
-                        <p>Want to see message times and authors? <a href="/join">Become a member</a>!</p>
-                    </div>
-                <% } %>
+                <%- include('./partials/alerts.ejs') %>
                 <h1 class="messages-list-title">All Messages</h1>
                 <%- include('./partials/messages/message-list.ejs')  %>
             </div>

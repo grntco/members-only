@@ -228,8 +228,7 @@ main {
 
 /* ALERTS */
 .alert {
-  /* margin: 0 auto; */
-  /* m-width: 800px; */
+  min-width: 600px;
   text-align: center;
   font-size: 1.2rem;
   padding: 1rem;

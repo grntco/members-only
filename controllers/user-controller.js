@@ -37,6 +37,7 @@ const logoutGet = (req, res, next) => {
     if (err) {
       return next(err);
     }
+    req.flash("success", "You successfully logged out.");
     res.redirect("/login");
   });
 };
@@ -66,6 +67,7 @@ const signUpPost = [
         password: hashedPassword,
         isAdmin: req.body.admin || false,
       });
+      req.flash("success", "Thanks for creating an account! Please log in.");
       res.redirect("/login");
     } catch (err) {
       console.error(err);
